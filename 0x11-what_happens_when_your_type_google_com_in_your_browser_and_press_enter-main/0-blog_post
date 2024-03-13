@@ -1,0 +1,23 @@
+Demystifying Web Page Loading Process
+
+Have you ever stopped to think about what really happens behind the scenes when you type a URL like https://www.google.com into your browser and hit Enter? This seemingly simple action sets off a complex series of events involving various components of the web stack. In this article, we’ll take a detailed look at the inner workings of the web stack to understand how your request is processed and how the web page is ultimately loaded.
+
+1. DNS Resolution: The process begins with a Domain Name System (DNS) resolution. When you enter a URL into your browser, it sends a DNS request to a DNS server to translate the domain name (e.g., www.google.com) into an IP address. The DNS server then responds with the IP address associated with the domain name.
+
+2. Establishing a TCP/IP Connection: Next, the browser establishes a Transmission Control Protocol (TCP) connection with the server using the Internet Protocol (IP). TCP ensures that data packets are delivered reliably and in the correct order.
+
+3. Passing Through Firewalls: The request passes through any firewalls that are in place. Firewalls are network security systems that monitor and control incoming and outgoing network traffic based on predetermined security rules.
+
+4. SSL Handshake: If the website uses HTTPS, a Secure Sockets Layer (SSL) handshake occurs. SSL is a protocol that encrypts data transmitted between the browser and the server to protect it from eavesdropping and tampering. During the handshake, the server and the browser agree on encryption methods and exchange encryption keys.
+
+5. Load Balancing: In some cases, the request may be routed through a load balancer. A load balancer distributes incoming network traffic across multiple servers to ensure that no single server is overwhelmed, thereby improving the website’s performance and reliability.
+
+6. Processing by the Web Server: The request reaches the web server, where it is processed, and the requested web page or resource is retrieved. The web server may also execute server-side scripts (e.g., PHP, Python, Ruby) to generate dynamic content.
+
+7. Interaction with the Application Server: If the web page requires data from a database or other external sources, the web server communicates with an application server. The application server processes the request, retrieves the necessary data, and sends it back to the web server.
+
+8. Database Interaction: If the web page relies on a database, the application server queries the database to retrieve the required data. The database server processes the query and returns the data to the application server, which then passes it back to the web server for rendering.
+
+After all these steps are completed, your browser has received the necessary data to render the web page, and you can see the familiar Google search page or whichever site you requested.
+
+In summary, typing a URL into your browser and pressing Enter triggers a complex sequence of events involving DNS resolution, TCP/IP connections, firewalls, encryption, load balancing, web servers, application servers, and databases. Understanding this process can give you a deeper appreciation for the technologies that power the web and help you become a more informed software engineer.

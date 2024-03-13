@@ -1,0 +1,1 @@
+This project is part of the SE Foundations curriculum and is designed to help Full-Stack Software Engineers understand the infrastructure side of web systems, including network, servers, and security. The project consists of writing a blog post explaining the process that occurs when you type https://www.google.com in your browser and press Enter.
