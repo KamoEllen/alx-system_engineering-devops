@@ -1,0 +1,29 @@
+Link:https://lucid.app/lucidchart/9a4a4b6f-2105-45bc-881d-287cdc278d25/edit?viewport_loc=-10%2C86%2C2964%2C1371%2C0_0&invitationId=inv_f32dc07d-940d-4368-8f46-e8d2f92da8a8
+
+Schema illustrating the flow of the request created when you type https://www.google.com in your browser and press Enter.
+
+The diagram should show:
+
+DNS resolution
+that the request hitting server IP on the appropriate port
+that the traffic is encrypted
+that the traffic goes through a firewall
+that the request is distributed via a load balancer
+that the web server answers the request by serving a web page
+that the application server generates the web page
+that the application server request data from the database
+
+https://lucid.app/ was used
+
+Explanation:
+The browser makes a DNS query to resolve "google.com" to an IP address.
+The DNS resolver sends the query to a DNS server, which responds with the IP address of Google's server.
+The browser sends an HTTP request to the server's IP address on the appropriate port (typically port 80 for HTTP or port 443 for HTTPS).
+The request passes through a firewall for security.
+The request is then distributed to a server in Google's server farm via a load balancer to ensure even distribution of traffic.
+The web server receives the request and serves a web page.
+The web server may request data from an application server.
+The application server generates the web page content, which may involve querying a database for data.
+The application server sends the generated web page back to the web server.
+The web server sends the web page back to the browser.
+The browser renders the web page for the user to see.
