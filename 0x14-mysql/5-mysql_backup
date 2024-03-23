@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
-# Back up script
-sudo mysqldump --password="$1" --user=root --all-databases | sudo tee backup.sql
-tar -cvzf "$(date +"%d-%m-%Y").tar.gz" backup.sql
+date=$(date +'%d-%m-%y.')
+mysqldump --all-databases -uroot -p"$1" > backup.sql
+tar -cvzf "$date.tar.gz" backup.sql
