@@ -1,2 +1,1 @@
-# 0x0F. Load balancer Projects directory
-- HAproxy
+# Solutions to tasks on Load balancer

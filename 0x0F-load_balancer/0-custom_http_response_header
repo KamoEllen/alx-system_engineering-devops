@@ -1,41 +1,31 @@
 #!/usr/bin/env bash
-# Update the package list and install nginx
-server_name=$(hostname)
-sudo apt-get update -y
-sudo apt-get install nginx -y
+# Configure Nginx so that its HTTP response contains a custom header (on web-01 and web-02)
+# The name of the custom HTTP header must be X-Served-By
+# The value of the custom HTTP header must be the hostname of the server Nginx is running on
+sudo apt-get update
+sudo apt-get -y install nginx
+
+# configure firewall to allow request through port 80
 sudo ufw allow 'Nginx HTTP'
-echo "Hello World!" > /var/www/html/index.html
-echo "Ceci n'est pas une error_page" > /var/www/html/custom_404.html
-echo "server {
-    listen 80 default_server;
-    listen [::]:80 default_server;
 
-    root /var/www/html;
+sudo mkdir -p /var/www/html
 
-    # Add index.php to the list if you are using PHP
-    index index.html index.htm index.nginx-debian.html;
+# change permissions to allow us to easily create files in this directory
+sudo chmod -R 755 /var/www
 
-    server_name _;
+#  create the index page
+echo 'Hello World!' |sudo tee  /var/www/html/index.html
 
-    location / {
-        # First attempt to serve request as file, then
-        # as a directory, then fall back to displaying a 404.
-        try_files \$uri \$uri/ =404;
-    }
+# create a webpage for error 404
+echo "Ceci n'est pas une page" |sudo tee /var/www/html/404.html
 
-    error_page 404 /custom_404.html;
-    location = /custom_404.html {
-        root /var/www/html;
-        internal;
-    }
+# code to configure redirect for a single page(/redirect_me) and add header to display hostname
+string_for_replacement="server_name _;\n\tadd_header X-Served-By \$hostname;\n\trewrite ^\/redirect_me https:\/\/www.blog.ehoneahobed.com permanent;"
+sudo sed -i "s/server_name _;/$string_for_replacement/" /etc/nginx/sites-enabled/default
 
-    location /redirect_me {
-        return 301 https://www.youtube.com/watch?v=3lFkDc6dFoY;
-    }
+# code to configure redirect for 404 error page
+string_for_replacement="listen 80 default_server;\n\terror_page 404 \/404.html;\n\tlocation = \/404.html {\n\t\troot \/var\/www\/html;\n\t\tinternal;\n\t}"
+sudo sed -i "s/listen 80 default_server;/$string_for_replacement/" /etc/nginx/sites-enabled/default
 
-    add_header X-Served-By $server_name;
-	
-}
-" > /etc/nginx/sites-enabled/default
-
-sudo service nginx restart 
+# restart the web server after updating the settings
+sudo service nginx restart

@@ -1,1 +1,1 @@
-Shell Basics, Learning Bash Scripting
+script prints the absolute path name of current working directory
